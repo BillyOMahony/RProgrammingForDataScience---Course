@@ -7,6 +7,7 @@ mat.1
 
 mat.1[2, 5] # Selecting element at row 2, column 5
 
+
 # Matrices can also be created using cbind() and rbind()
 
 vec.2 <- c("A", "B", "C")
@@ -19,5 +20,13 @@ mat.2
 mat.3 <- cbind(vec.2, vec.3, vec.4) # cbind uses each vector as a new column
 mat.3
 
+
+# Clearing up stored objects
 rm(vec.1)
+rm(vec.2)
+rm(vec.3)
+rm(vec.4)
+
 rm(mat.1)
+rm(mat.2)
+rm(mat.3)
