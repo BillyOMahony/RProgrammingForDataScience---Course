@@ -28,3 +28,5 @@ Games[1, 3]
 # If we want a matrix instead we can do as follows
 Games[1, ,drop=F]
 Games[1, 3, drop=F]
+
+rm(x)
