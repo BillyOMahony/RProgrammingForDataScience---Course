@@ -16,5 +16,8 @@ qplot(data=stats, x=Internet.users)
 # plots Income group against Birth rate, note that qplot automatically selected the right plot type (scatter plot here)
 qplot(data=stats, x=Income.Group, y=Birth.rate)
 
-# Changes the size of the plot
+# Changes the size of the plot and colours
 qplot(data=stats, x=Income.Group, y=Birth.rate, size=I(2), colour=I("red"))
+
+# Manually select type of plot
+qplot(data=stats, x=Income.Group, y=Birth.rate, geom="boxplot")
