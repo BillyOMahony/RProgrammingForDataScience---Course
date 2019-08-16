@@ -132,3 +132,34 @@ r + geom_point(aes(size=BudgetMillions))
 
 # Setting
 r + geom_point(size=5)
+
+
+
+# ---------- LECTURE64 HISTOGRAMS AND DENSITY CHARTS ---------- #
+
+# We're only going to use one axis for this
+s <- ggplot(data = movies, aes(x=BudgetMillions))
+
+
+# ----- Histogram ----- #
+
+# We will create a histogram, each bin will cover a range of $10million
+s + geom_histogram(binwidth=10)
+
+# Add colour, but map it to genre
+# we use fill to colour the bars, not colour. 
+s + geom_histogram(binwidth = 10, aes(fill=Genre))
+
+# Colour is reserved for the outline of the bins as we can see here
+s + geom_histogram(binwidth = 10, colour="Black", aes(fill=Genre))
+
+
+# ----- Density Chart ----- #
+s + geom_density(aes(fill=Genre))
+
+# There is an issue with this chart, some genres are hidden behind others
+# This can be rectified by stacking the genres
+s + geom_density(aes(fill=Genre), position="stack")
+
+
+
