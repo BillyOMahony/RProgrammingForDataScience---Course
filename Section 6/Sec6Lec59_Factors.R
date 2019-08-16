@@ -26,3 +26,27 @@ movies$Year <- factor(movies$Year)
 
 # We can see that Year is no longer a numeric variable
 str(movies)
+
+
+
+# ---------- LECTURE 60: Aesthetics ---------- #
+
+# Load ggplot2
+library(ggplot2)
+
+# The aes function allows you to set aesthetics
+# aesthetics describes how the data is mapped to what you want to see
+# We wish to map CriticRating against AudianceRating
+ggplot(data = movies, aes(x=CriticRating, y=AudienceRating))
+
+# SO far, the above function does nothing, only creates an empty graph. We need to do more.
+# This is because ggplot wants us to specify what we want; type of plot, type of points etc.
+
+# We can add geometry to this plot
+ggplot(data = movies, aes(x=CriticRating, y=AudienceRating)) + geom_point
+
+# We can also colour and size the points, as with qplot()
+# In this case we size the datapoints based off of the budget. Larget budget films get bigger dots
+ggplot(data = movies, aes(x=CriticRating, y=AudienceRating, colour=Genre, size = BudgetMillions)) + geom_point()
+
+       
