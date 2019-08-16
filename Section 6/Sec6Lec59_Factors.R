@@ -49,4 +49,27 @@ ggplot(data = movies, aes(x=CriticRating, y=AudienceRating)) + geom_point
 # In this case we size the datapoints based off of the budget. Larget budget films get bigger dots
 ggplot(data = movies, aes(x=CriticRating, y=AudienceRating, colour=Genre, size = BudgetMillions)) + geom_point()
 
-       
+
+
+# ---------- LECTURE 61: PLOTTING WITH LAYERS ---------- #
+
+# When creating a plot, you are actually creating an object
+# Layers can be added to this object
+# The desired data is copied into the newly created object, as well as layers, themes, etc. 
+# (all types of data for the plot can be seen in the data window)
+p <- ggplot(data = movies, 
+            aes(x=CriticRating, y=AudienceRating, colour=Genre, size = BudgetMillions))
+
+# We removed the geometry above and assigned the variable
+# If we run that we will not see plot points, because there is no geometry
+# The plot can then be viewed as such
+p
+
+# We can run the plot, with geometry selected when we run it, e.g.:
+p + geom_point()
+p + geom_line()
+
+# p contains the data, and explains how we wish to map the data
+# however we can choose different types of geometry aside from that
+# If we want, we can use two different types of geometry together
+p + geom_line() + geom_point()
