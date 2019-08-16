@@ -226,7 +226,7 @@ u + geom_jitter() + geom_boxplot(alpha = 0.5)
 
 
 
-# ---------- Using Facets ---------- #
+# ---------- LECTURE67 Using Facets ---------- #
 
 v <- ggplot(data=movies, aes(x=BudgetMillions))
 v + geom_histogram(binwidth = 10, aes(fill=Genre), colour="Black")
@@ -255,3 +255,32 @@ w + geom_point(size=I(2)) + facet_grid(Genre~Year)+ geom_smooth()
 
 # Base the size off of the Budget for the craic
 w + geom_point(aes(size=BudgetMillions)) + facet_grid(Genre~Year)+ geom_smooth()
+
+
+
+# ---------- LECTURE68 Coordinates ---------- #
+
+# Our ratings are from 0 to 100, however the produced graphs in the last lecture have axies ranging from -100 to 150. 
+# We need to zoom in on these graphs to fix the axis.
+m <- ggplot(data=movies, aes(x=CriticRating, y=AudienceRating, size=BudgetMillions, colour=Genre))
+m + geom_point()
+
+# Say we only wish to see the movies with the highest ratings (AudienceRating > 50 and CriticRating > 50)
+# We can use xlim and ylim
+m + geom_point() + xlim(50, 100) + ylim(50, 100)
+
+# using limits doesn't always work well however
+# In the following example, data which would go above 50 on the Y axis is deleted instead of being cut off
+n <- ggplot(data=movies, aes(x=BudgetMillions))
+n + geom_histogram(binwidth=10, aes(fill=Genre), colour="Black") + ylim(0, 50)
+
+# To remedy this, we can zoom in on the plot instead
+# coord_cartesian is used to zoom in
+n + geom_histogram(binwidth=10, aes(fill=Genre), colour="Black") + coord_cartesian(ylim=c(0, 50))
+
+# Lets fix the ratings from the plot in the previous lecture
+w + geom_point(aes(size=BudgetMillions)) + facet_grid(Genre~Year)+ geom_smooth()
+
+# As can be seen, the y axis ranges from -50 to 150, where possible values are only in the 0 to 100 range
+# To fix it:
+w + geom_point(aes(size=BudgetMillions)) + facet_grid(Genre~Year) + coord_cartesian(ylim=c(0, 100)) + geom_smooth() 
