@@ -181,6 +181,48 @@ t + geom_histogram(binwidth=10,
                    fill="White", colour="Blue")
 
 # It is also possible to make a "skeleton plot"
-# In this case all data is assigned in the geom function
+# In this case all data is assigned in the geom functionya 
 ske <- ggplot()
+
+
+
+# ---------- LECTURE66 STATISTICAL TRANSFORMATIONS ---------- #
+
+?geom_smooth()
+
+u <- ggplot(data=movies, aes(x=CriticRating, y=AudienceRating, colour=Genre))
+
+# Using the geom_smooth function
+# At the moment this does not help improve the graph
+u + geom_point() + geom_smooth()
+
+# However if we turn off the fill, we can see just the averages of each genre
+u + geom_point() + geom_smooth(fill=NA)
+
+
+# Another type of smoother is a box plot
+u <- ggplot(data=movies, aes(x=Genre, y=AudienceRating, colour=Genre))
+
+u + geom_boxplot()
+
+# Lets add points over the boxplot
+u + geom_boxplot() + geom_point()
+
+# This doesn't look good, it's very cluttered
+# We can fix this with geom_jitter, instead of geom_point
+# the jitter is based off nothing in particular, the points are positiones randomly on the x axis
+u + geom_boxplot() + geom_jitter()
+
+# A better way to visualize is to put the points first
+u + geom_jitter() + geom_boxplot()
+
+# Though we need some transparency to see all of the points
+u + geom_jitter() + geom_boxplot(alpha = 0.5)
+
+# Critic Rating
+# We can see that the spread is much more uniform
+u <- ggplot(data=movies, aes(x=Genre, y=CriticRating, colour=Genre))
+u + geom_jitter() + geom_boxplot(alpha = 0.5)
+
+
 
