@@ -226,3 +226,32 @@ u + geom_jitter() + geom_boxplot(alpha = 0.5)
 
 
 
+# ---------- Using Facets ---------- #
+
+v <- ggplot(data=movies, aes(x=BudgetMillions))
+v + geom_histogram(binwidth = 10, aes(fill=Genre), colour="Black")
+
+# These histograms are fine, however it is hard to compare individual genres
+# Facets help us with this, we can use them to create an individual histogram for each Genre
+# facet_grid(Genre~.) here tells us we want a a row for each genre, and one single column
+v + geom_histogram(binwidth = 10, aes(fill=Genre), colour="Black") + facet_grid(Genre~.)
+
+# These histograms are hard to read however
+# We can allow the y axis scale to change for each graph. 
+# This has pros and cons, but it essentially rescales each graph to be the same height (but changing the axis)
+v + geom_histogram(binwidth = 10, aes(fill=Genre), colour="Black") + facet_grid(Genre~., scales="free")
+
+
+# scatterplots
+w <- ggplot(data=movies, aes(x=CriticRating, y=AudienceRating, colour=Genre))
+w + geom_point(size=I(1))  
+w + geom_point(size=I(1)) + facet_grid(Genre~.)
+
+# Another thing we can do is base the grid off of two variables
+w + geom_point(size=I(1)) + facet_grid(Genre~Year)
+
+# We can also add a smoother to this
+w + geom_point(size=I(2)) + facet_grid(Genre~Year)+ geom_smooth()
+
+# Base the size off of the Budget for the craic
+w + geom_point(aes(size=BudgetMillions)) + facet_grid(Genre~Year)+ geom_smooth()
