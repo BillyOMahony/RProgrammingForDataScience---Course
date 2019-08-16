@@ -284,3 +284,33 @@ w + geom_point(aes(size=BudgetMillions)) + facet_grid(Genre~Year)+ geom_smooth()
 # As can be seen, the y axis ranges from -50 to 150, where possible values are only in the 0 to 100 range
 # To fix it:
 w + geom_point(aes(size=BudgetMillions)) + facet_grid(Genre~Year) + coord_cartesian(ylim=c(0, 100)) + geom_smooth() 
+
+
+
+# ---------- LECTURE69 ADDING THEMES ---------- #
+
+o <- ggplot(data = movies, aes(x=BudgetMillions))
+# We can put the plot, and it's additional histogram data into an object
+h <- o + geom_histogram(binwidth = 10, aes(fill=Genre), colour="Black")
+h
+
+# axes lables
+# We can change and colour the text of each axis
+# The theme function allows a number of presentation elements of the plot to be altered
+h + xlab("Cost in Millions") +
+  ylab("Number of Movies") +
+  theme(axis.title.x = element_text(colour="DarkGreen", size=30), 
+        axis.title.y = element_text(colour="Red", size=40))
+
+# We can edit the size of the axis text (the numbers)
+h + theme(axis.text.x = element_text(size=15), axis.text.y = element_text(size=15))
+
+# And the legend
+h + theme(legend.title = element_text(size=20), 
+          legend.text = element_text(size=15),
+          legend.position = c(1,1),              # When positioning the legend, pass an (x, y) value between 0 and 1
+          legend.justification = c(1,1))         # On it's own, positioning the legend isn't enough. it has to be anchored correctly to that position
+
+# Add a title to the plot
+h + ggtitle("Movie Budget Distribution") +
+  theme(plot.title = element_text(colour = "DarkBlue", size = 30))
