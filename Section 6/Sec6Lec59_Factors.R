@@ -163,3 +163,24 @@ s + geom_density(aes(fill=Genre), position="stack")
 
 
 
+# ---------- LECTURE65 STARTING LAYER TIPS ---------- #
+
+t <- ggplot(data=movies, aes(x=AudienceRating))
+t + geom_histogram(binwidth=10, fill = "White", colour ="Blue")
+
+# It is possible to set aesthetics after assigning the plot data
+t <- ggplot(data=movies)
+t + geom_histogram(binwidth=10,
+                   aes(x=AudienceRating),
+                   fill="White", colour="Blue")
+
+# When exploring the dataset this gives greater flexibility
+# We can easily change the data we wish to display; here we change to critic rating
+t + geom_histogram(binwidth=10,
+                   aes(x=CriticRating),
+                   fill="White", colour="Blue")
+
+# It is also possible to make a "skeleton plot"
+# In this case all data is assigned in the geom function
+ske <- ggplot()
+
