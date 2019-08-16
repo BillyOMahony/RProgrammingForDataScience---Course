@@ -73,3 +73,36 @@ p + geom_line()
 # however we can choose different types of geometry aside from that
 # If we want, we can use two different types of geometry together
 p + geom_line() + geom_point()
+
+
+
+# ---------- LECTURE 62: Overriding Aesthetics ---------- #
+
+q <- ggplot(data=movies, aes(x = CriticRating, y=AudienceRating,
+                             colour=Genre, size=BudgetMillions))
+
+# Add Geom later
+q + geom_point()
+
+# What if we don't like the default aesthetic information in the plot object?
+# We can override them
+# Here we are overriding the default size value
+q + geom_point(aes(size=I(2)))
+
+# We might want to override colour too
+q + geom_point(aes(colour=BudgetMillions))
+
+# We can even override the X and Y values
+q + geom_point(aes(x = BudgetMillions))
+
+# There is an issue with the overriding however, the old plot lables will remain when overriden.
+# E.g. if the default x axis is CriticRating, and we change it to BudgetMillions, then the lable
+#   will remain as CriticRating
+# We can fix this by:
+q + geom_point(aes(x = BudgetMillions)) + xlab("Budget Millions")
+
+# If we are layering data, we can alter each layer
+# Note that aes() does not need to be typed in, this is a thing called mapping vs setting.
+# When aes() is used, it means the mapping of the variables changes.
+# Without it, it means the mapping remains the same, but some settings are changed
+q + geom_point() + geom_line(size=I(1))
