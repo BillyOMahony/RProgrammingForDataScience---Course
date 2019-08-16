@@ -106,3 +106,29 @@ q + geom_point(aes(x = BudgetMillions)) + xlab("Budget Millions")
 # When aes() is used, it means the mapping of the variables changes.
 # Without it, it means the mapping remains the same, but some settings are changed
 q + geom_point() + geom_line(size=I(1))
+
+
+
+# ---------- LECTURE63 MAPPING VS SETTING ---------- #
+
+r <- ggplot(data=movies, aes(x=CriticRating, y=AudienceRating))
+r + geom_point()
+
+# Add Colour (two ways)
+# 1. By Mapping
+r + geom_point(aes(colour=Genre))
+
+# 2. By Setting
+r + geom_point(colour = "DarkGreen")
+
+# The above works, however the below will not work
+# This is because aes() is for mapping. saying colour="DarkGreen" in aes 
+  # creates a new variable which is being mapped to DarkGreen
+r + geom_point(aes(colour = "DarkGreen"))
+
+# Another example
+# Mapping
+r + geom_point(aes(size=BudgetMillions))
+
+# Setting
+r + geom_point(size=5)
